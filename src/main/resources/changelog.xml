@@ -1,0 +1,113 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation=
+                           "http://www.liquibase.org/xml/ns/dbchangelog
+                           https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1" author="juli220620">
+        <createTable tableName="property">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="brand" type="varchar"/>
+            <column name="description" type="varchar"/>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="2" author="juli220620">
+        <createTable tableName="amenity">
+            <column name="id" type="varchar" autoIncrement="false">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="juli220620">
+        <createTable tableName="address">
+            <column name="hotel_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="house_number" type="bigint"/>
+            <column name="street" type="varchar"/>
+            <column name="city" type="varchar"/>
+            <column name="country" type="varchar"/>
+            <column name="postCode" type="varchar"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="juli220620">
+        <addForeignKeyConstraint baseTableName="address" baseColumnNames="hotel_id"
+                                 constraintName="address_property_fk"
+                                 referencedTableName="property"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="5" author="juli220620">
+        <createTable tableName="contact">
+            <column name="hotel_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="phone" type="varchar"/>
+            <column name="email" type="varchar"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="6" author="juli220620">
+        <addForeignKeyConstraint baseTableName="contact" baseColumnNames="hotel_id"
+                                 constraintName="contact_property_fk"
+                                 referencedTableName="property"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="7" author="juli220620">
+        <createTable tableName="arrival_time">
+            <column name="hotel_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="check_in" type="varchar" defaultValue="14:00"/>
+            <column name="check_out" type="varchar" defaultValue="12:00"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="8" author="juli220620">
+        <addForeignKeyConstraint baseTableName="arrival_time" baseColumnNames="hotel_id"
+                                 constraintName="arrival_property_fk"
+                                 referencedTableName="property"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="9" author="juli220620" labels="data">
+        <loadData tableName="amenity" file="amenities.csv"/>
+    </changeSet>
+
+    <changeSet id="10" author="juli220620">
+        <createTable tableName="property_amenities">
+            <column name="property_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="amenity_id" type="varchar">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="11" author="juli220620">
+        <addForeignKeyConstraint baseTableName="property_amenities" baseColumnNames="property_id"
+                                 constraintName="link_property_fk"
+                                 referencedTableName="property"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="12" author="juli220620">
+        <addForeignKeyConstraint baseTableName="property_amenities" baseColumnNames="amenity_id"
+                                 constraintName="link_amenity_fk"
+                                 referencedTableName="amenity"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
