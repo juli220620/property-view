@@ -13,16 +13,13 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "address")
-public class PropertyAddressEntity {
+@Table(name = "arrival_time")
+public class PropertyArrivalTimeEntity {
 
     @Id
     private Long hotelId;
 
-    private Long houseNumber;
-    private String street;
-    private String city;
-    private String country;
-    private String postCode;
+    private String checkIn;
+    private String checkOut;
 
 }

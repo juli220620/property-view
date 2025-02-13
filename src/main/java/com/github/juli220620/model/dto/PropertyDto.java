@@ -19,5 +19,6 @@ public class PropertyDto {
 
     private PropertyAddressDto address;
     private PropertyContactDto contact;
+    private PropertyArrivalTimeDto arrivalTime;
     private List<String> amenities;
 }

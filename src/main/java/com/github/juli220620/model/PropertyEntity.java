@@ -21,14 +21,20 @@ public class PropertyEntity {
     private Long id;
 
     private String name;
+    private String brand;
+    private String description;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "hotel_id", referencedColumnName = "id")
+    @JoinColumn(name = "id", referencedColumnName = "hotel_id")
     private PropertyAddressEntity address;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "hotel_id", referencedColumnName = "id")
+    @JoinColumn(name = "id", referencedColumnName = "hotel_id")
     private PropertyContactEntity contact;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id", referencedColumnName = "hotel_id")
+    private PropertyArrivalTimeEntity arrivalTime;
 
     @ManyToMany
     @JoinTable(

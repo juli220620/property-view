@@ -36,7 +36,7 @@
             <column name="street" type="varchar"/>
             <column name="city" type="varchar"/>
             <column name="country" type="varchar"/>
-            <column name="postCode" type="varchar"/>
+            <column name="post_code" type="varchar"/>
         </createTable>
     </changeSet>
 
@@ -82,7 +82,7 @@
     </changeSet>
 
     <changeSet id="9" author="juli220620" labels="data">
-        <loadData tableName="amenity" file="amenities.csv"/>
+        <loadData tableName="amenity" file="data/amenities.csv"/>
     </changeSet>
 
     <changeSet id="10" author="juli220620">
@@ -108,6 +108,13 @@
                                  constraintName="link_amenity_fk"
                                  referencedTableName="amenity"
                                  referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="13" author="juli220620">
+        <loadData tableName="property" file="data/hotels.csv"/>
+        <loadData tableName="address" file="data/addresses.csv"/>
+        <loadData tableName="contact" file="data/contacts.csv"/>
+        <loadData tableName="property_amenities" file="data/property_amenities.csv"/>
     </changeSet>
 
 </databaseChangeLog>
