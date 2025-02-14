@@ -13,9 +13,7 @@ public class ParamProcessorConfig {
                 new NameParamProcessor(
                         new BrandParamProcessor(
                                 new CityParamProcessor(
-                                        new CountryParamProcessor(
-                                                new AmenityParamProcessor()
-                                        )
+                                        new CountryParamProcessor()
                                 )
                         )
                 );

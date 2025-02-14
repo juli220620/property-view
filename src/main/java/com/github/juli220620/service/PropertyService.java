@@ -35,7 +35,8 @@ public class PropertyService {
 
         if (paramList.isEmpty()) return mapListToMainInfo(propertyRepo.findAll());
 
-        return mapListToMainInfo(propertyRepo.findAllByParams(paramList));
+        var data = propertyRepo.findAllByParams(paramList);
+        return mapListToMainInfo(data);
     }
 
     private List<PropertyMainInfoDto> mapListToMainInfo(List<PropertyEntity> entities) {
