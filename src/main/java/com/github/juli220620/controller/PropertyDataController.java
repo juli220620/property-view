@@ -3,6 +3,7 @@ package com.github.juli220620.controller;
 import com.github.juli220620.model.dto.PropertyDto;
 import com.github.juli220620.model.dto.PropertyMainInfoDto;
 import com.github.juli220620.service.PropertyDataService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +24,8 @@ public class PropertyDataController {
     }
 
     @GetMapping("/search")
-    public List<PropertyMainInfoDto> getAllBy(@RequestParam(required = false) List<String> name,
-                                              @RequestParam(required = false) List<String> brand,
-                                              @RequestParam(required = false) List<String> city,
-                                              @RequestParam(required = false) List<String> country,
-                                              @RequestParam(required = false) List<String> amenities
-    ) {
-        return propertyDataService.findAllByParams(name, brand, city, country, amenities);
+    public List<PropertyMainInfoDto> getAllBy(HttpServletRequest request) {
+        return propertyDataService.findAllByParams(request.getParameterMap());
     }
 
     @GetMapping("/hotels")

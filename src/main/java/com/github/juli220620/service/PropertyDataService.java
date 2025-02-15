@@ -9,9 +9,7 @@ import com.github.juli220620.model.dto.PropertyMainInfoDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,24 +30,21 @@ public class PropertyDataService {
                 .orElseThrow(() -> new NoSuchElementException("No such hotel"));
     }
 
-    public List<PropertyMainInfoDto> findAllByParams(List<String> name,
-                                                     List<String> brand,
-                                                     List<String> city,
-                                                     List<String> country,
-                                                     List<String> amenities
-    ) {
-        var paramList = new ArrayList<SearchParam>();
-
-        if (name != null && !name.isEmpty()) paramList.add(new SearchParam("name", name));
-        if (brand != null && !brand.isEmpty()) paramList.add(new SearchParam("brand", brand));
-        if (city != null && !city.isEmpty()) paramList.add(new SearchParam("city", city));
-        if (country != null && !country.isEmpty()) paramList.add(new SearchParam("country", country));
-        if (amenities != null && !amenities.isEmpty()) paramList.add(new SearchParam("amenities", amenities));
+    public List<PropertyMainInfoDto> findAllByParams(Map<String, String[]> params) {
+        var paramList = params.entrySet().stream()
+                .map(entry -> new SearchParam(entry.getKey(), parseParamValue(entry)))
+                .toList();
 
         if (paramList.isEmpty()) return getAll();
 
         var data = propertyRepo.findAllByParams(paramList);
         return mapListToMainInfo(data);
+    }
+
+    private static List<String> parseParamValue(Map.Entry<String, String[]> entry) {
+        return Arrays.stream(entry.getValue())
+                .flatMap(it -> Arrays.stream(it.split(",")))
+                .toList();
     }
 
     private List<PropertyMainInfoDto> mapListToMainInfo(List<PropertyEntity> entities) {
