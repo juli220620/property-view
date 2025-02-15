@@ -1,38 +1,22 @@
 package com.github.juli220620.dao.impl.composite;
 
-import com.github.juli220620.dao.impl.SearchParam;
+import com.github.juli220620.model.PropertyAddressEntity;
 import com.github.juli220620.model.PropertyEntity;
+import com.github.juli220620.service.PropertySearchKey;
 import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
-import java.util.List;
-
-@Component
-@AllArgsConstructor
-@NoArgsConstructor
-public class CountryParamProcessor implements ParamProcessor {
-    public static final String PARAM_NAME = "country";
-    public static final String NESTED_ENTITY_NAME = "address";
-
-    private ParamProcessor next;
+public class CountryParamProcessor extends AbstractPropertyParamProcessor {
 
     @Override
-    public void process(SearchParam param,
-                        CriteriaBuilder builder,
-                        List<Predicate> predicates,
-                        Root<PropertyEntity> root
-    ) {
-        if (param.getName().equals(PARAM_NAME)) {
-            var variables = param.getValues().stream()
-                    .map(it -> builder.equal(root.get(NESTED_ENTITY_NAME).get(PARAM_NAME), it))
-                    .toList();
-            predicates.add(builder.or(variables.toArray(new Predicate[]{})));
-        }
+    protected Predicate processParam(String param, CriteriaBuilder builder, Root<PropertyEntity> root, CriteriaQuery<PropertyEntity> query) {
+        return builder.equal(root.get(PropertyEntity.Fields.address).get(PropertyAddressEntity.Fields.country), param);
+    }
 
-        if (next != null) next.process(param, builder, predicates, root);
+    @Override
+    public PropertySearchKey paramKey() {
+        return PropertySearchKey.COUNTRY;
     }
 }

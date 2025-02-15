@@ -8,17 +8,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.github.juli220620.Application.ROOT;
+
 @RestController
-@RequestMapping("/api/property-view")
+@RequestMapping(ROOT)
 @RequiredArgsConstructor
 public class PropertyDataController {
 
     private final PropertyDataService propertyDataService;
 
-
     @GetMapping("/hotels/{id}")
     public PropertyDto get(@PathVariable Long id) {
-        return propertyDataService.findById(id);
+        return propertyDataService.getById(id);
     }
 
     @GetMapping("/search")
@@ -33,6 +34,6 @@ public class PropertyDataController {
 
     @GetMapping("/hotels")
     public List<PropertyMainInfoDto> getAll() {
-        return propertyDataService.findAll();
+        return propertyDataService.getAll();
     }
 }

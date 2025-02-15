@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+import static com.github.juli220620.Application.ROOT;
+
 @RestController
-@RequestMapping("/api/property-view")
+@RequestMapping(ROOT)
 @RequiredArgsConstructor
 public class StatisticsController {
 

@@ -1,32 +1,21 @@
 package com.github.juli220620.dao.impl.composite;
 
 import com.github.juli220620.model.PropertyEntity;
-import jakarta.persistence.criteria.Path;
+import com.github.juli220620.service.PropertySearchKey;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
-@Component
-@AllArgsConstructor
-@NoArgsConstructor
 public class NameParamProcessor extends AbstractPropertyParamProcessor {
-    public static final String PARAM_NAME = "name";
-
-    private ParamProcessor next;
 
     @Override
-    protected Path<Object> getPath(Root<PropertyEntity> root) {
-        return root.get(PARAM_NAME);
+    protected Predicate processParam(String param, CriteriaBuilder builder, Root<PropertyEntity> root, CriteriaQuery<PropertyEntity> query) {
+        return builder.equal(root.get(PropertyEntity.Fields.name), param);
     }
 
     @Override
-    protected String getParamName() {
-        return PARAM_NAME;
-    }
-
-    @Override
-    protected ParamProcessor getNext() {
-        return next;
+    public PropertySearchKey paramKey() {
+        return PropertySearchKey.NAME;
     }
 }

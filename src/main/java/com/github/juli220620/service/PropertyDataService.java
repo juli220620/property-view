@@ -22,11 +22,11 @@ public class PropertyDataService {
     private final PropertyRepo propertyRepo;
 
 
-    public List<PropertyMainInfoDto> findAll() {
+    public List<PropertyMainInfoDto> getAll() {
         return mapListToMainInfo(propertyRepo.findAll());
     }
 
-    public PropertyDto findById(Long id) {
+    public PropertyDto getById(Long id) {
         return propertyRepo.findById(id)
                 .map(propertyMapper::toDto)
                 .orElseThrow(() -> new NoSuchElementException("No such hotel"));
@@ -46,7 +46,7 @@ public class PropertyDataService {
         if (country != null && !country.isEmpty()) paramList.add(new SearchParam("country", country));
         if (amenities != null && !amenities.isEmpty()) paramList.add(new SearchParam("amenities", amenities));
 
-        if (paramList.isEmpty()) return findAll();
+        if (paramList.isEmpty()) return getAll();
 
         var data = propertyRepo.findAllByParams(paramList);
         return mapListToMainInfo(data);

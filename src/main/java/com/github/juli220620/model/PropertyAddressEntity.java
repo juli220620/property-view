@@ -8,11 +8,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.FieldNameConstants;
 import org.hibernate.validator.constraints.Range;
 
 @Getter
 @Setter
 @Entity
+@FieldNameConstants
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "address")

@@ -17,7 +17,6 @@ public class PropertySearchRepoImpl implements PropertySearchRepo {
 
     private final EntityManagerFactory entityManagerFactory;
     private final ParamProcessor paramProcessor;
-    private final AmenityParamProcessor amenityParamProcessor;
 
     @Override
     public List<PropertyEntity> findAllByParams(List<SearchParam> params) {
@@ -28,12 +27,7 @@ public class PropertySearchRepoImpl implements PropertySearchRepo {
 
             List<Predicate> predicates = new ArrayList<>();
 
-            params.forEach(it -> paramProcessor.process(it, builder, predicates, root));
-
-            params.stream()
-                    .filter(it -> it.getName().equals(AmenityParamProcessor.PARAM_NAME))
-                    .findFirst()
-                    .ifPresent(it -> amenityParamProcessor.process(it, builder, predicates, root, query));
+            params.forEach(it -> paramProcessor.process(it, builder, predicates, root, query));
 
             query.select(root).where(predicates.toArray(Predicate[]::new));
             return entityManager.createQuery(query).getResultList();

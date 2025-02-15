@@ -69,9 +69,9 @@ public interface PropertyMapper {
 
     static PropertyEntity setBaseInfo(AddHotelRq rq) {
         var baseInfo = new PropertyEntity();
-        baseInfo.setName(rq.getName());
-        baseInfo.setBrand(rq.getBrand());
-        baseInfo.setDescription(rq.getDescription());
+        baseInfo.setName(rq.name());
+        baseInfo.setBrand(rq.brand());
+        baseInfo.setDescription(rq.description());
         return baseInfo;
     }
 }

@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.github.juli220620.Application.ROOT;
+
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/property-view/hotels")
+@RequestMapping(ROOT + "/hotels")
 public class PropertyManagementController {
 
     private final PropertyManagementService propertyManagementService;
