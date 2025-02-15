@@ -1,8 +1,6 @@
 package com.github.juli220620.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,9 +18,6 @@ import org.hibernate.validator.constraints.Range;
 @Table(name = "address")
 public class PropertyAddressEntity {
 
-    @Id
-    private Long hotelId;
-
     @Range(min = 1)
     private Integer houseNumber;
     @NotBlank
@@ -33,5 +28,10 @@ public class PropertyAddressEntity {
     private String country;
     @NotBlank
     private String postCode;
+
+    @Id
+    @OneToOne
+    @JoinColumn(name = "hotel_id", referencedColumnName = "id")
+    private PropertyEntity hotel;
 
 }

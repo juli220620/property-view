@@ -10,6 +10,8 @@ import lombok.experimental.FieldNameConstants;
 
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.*;
+
 @Getter
 @Setter
 @Entity
@@ -29,23 +31,20 @@ public class PropertyEntity {
     private String brand;
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id", referencedColumnName = "hotel_id")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "hotel", optional = false)
     private PropertyAddressEntity address;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id", referencedColumnName = "hotel_id")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "hotel", optional = false)
     private PropertyContactEntity contact;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id", referencedColumnName = "hotel_id")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "hotel", optional = false)
     private PropertyArrivalTimeEntity arrivalTime;
 
-    @ManyToMany
+    @ManyToMany(cascade = {PERSIST, REFRESH, DETACH})
     @JoinTable(
             name = "property_amenities",
             joinColumns = @JoinColumn(name = "property_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "amenity_id", referencedColumnName = "id")
+            inverseJoinColumns = @JoinColumn(name = "amenity_id", referencedColumnName = "name")
     )
     private List<AmenityEntity> amenities;
 }

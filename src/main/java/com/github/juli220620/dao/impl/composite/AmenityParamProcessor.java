@@ -1,6 +1,6 @@
-package com.github.juli220620.dao.impl;
+package com.github.juli220620.dao.impl.composite;
 
-import com.github.juli220620.dao.impl.composite.ComposingPropertyParamProcessor;
+import com.github.juli220620.dao.impl.SearchParam;
 import com.github.juli220620.model.AmenityEntity;
 import com.github.juli220620.model.PropertyEntity;
 import com.github.juli220620.service.PropertySearchKey;
@@ -30,7 +30,7 @@ public class AmenityParamProcessor extends ComposingPropertyParamProcessor {
         var propertyIdPred = builder.equal(subRoot.get(PropertyEntity.Fields.id), root.get(PropertyEntity.Fields.id));
         var amenityIdPred = join.get(AmenityEntity.Fields.name).in(param.getValues());
 
-        subquery.select(builder.count(join.get(AmenityEntity.Fields.id)))
+        subquery.select(builder.count(join.get(AmenityEntity.Fields.name)))
                 .where(propertyIdPred, amenityIdPred);
 
         predicates.add(builder.equal(subquery, param.getValues().size()));

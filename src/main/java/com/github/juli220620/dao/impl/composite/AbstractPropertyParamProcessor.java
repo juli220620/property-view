@@ -18,8 +18,8 @@ public abstract class AbstractPropertyParamProcessor extends ComposingPropertyPa
                         Root<PropertyEntity> root,
                         CriteriaQuery<PropertyEntity> query
     ) {
-        var searchVariables = param.getValues().stream()
-                .map(value -> processParam(param.getName(), builder, root, query))
+         var searchVariables = param.getValues().stream()
+                .map(value -> processParam(value, builder, root, query))
                 .toList();
         predicates.add(builder.or(searchVariables.toArray(new Predicate[]{})));
     }

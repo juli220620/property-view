@@ -1,11 +1,11 @@
-id,name
-PARKING,Free parking
-WIFI,Free WiFi
-NON_SMOKING,Non-smoking rooms
-CONCIERGE,Concierge
-RESTAURANT,On-site restaurant
-FITNESS,Fitness center
-PETS,Pet-friendly rooms
-ROOM_SERVICE,Room service
-BUSINESS_CENTER,Business center
-MEETING_ROOMS,Meeting rooms
+name
+Free parking
+Free WiFi
+Non-smoking rooms
+Concierge
+On-site restaurant
+Fitness center
+Pet-friendly rooms
+Room service
+Business center
+Meeting rooms

@@ -6,10 +6,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface PropertyAddressMapper {
+public interface AddressMapper {
 
-    @Mapping(target = "hotelId", ignore = true)
+    @Mapping(target = "hotel", ignore = true)
     PropertyAddressEntity dtoToEntity(PropertyAddressDto dto);
 
     PropertyAddressDto entityToDto(PropertyAddressEntity entity);
+
 }

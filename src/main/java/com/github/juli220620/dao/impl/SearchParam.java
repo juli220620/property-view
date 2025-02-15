@@ -8,7 +8,6 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 public class SearchParam {
-
     private String name;
     private List<String> values;
 }

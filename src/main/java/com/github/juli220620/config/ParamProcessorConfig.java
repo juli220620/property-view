@@ -1,6 +1,6 @@
 package com.github.juli220620.config;
 
-import com.github.juli220620.dao.impl.AmenityParamProcessor;
+import com.github.juli220620.dao.impl.composite.AmenityParamProcessor;
 import com.github.juli220620.dao.impl.composite.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

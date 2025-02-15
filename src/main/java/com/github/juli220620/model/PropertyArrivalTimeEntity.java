@@ -1,8 +1,6 @@
 package com.github.juli220620.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,11 +13,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "arrival_time")
 public class PropertyArrivalTimeEntity {
-
-    @Id
-    private Long hotelId;
-
     private String checkIn;
     private String checkOut;
+
+    @Id
+    @OneToOne
+    @JoinColumn(name = "hotel_id", referencedColumnName = "id")
+    private PropertyEntity hotel;
 
 }

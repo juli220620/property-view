@@ -22,10 +22,9 @@
 
     <changeSet id="2" author="juli220620">
         <createTable tableName="amenity">
-            <column name="id" type="varchar" autoIncrement="false">
+            <column name="name" type="varchar">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar"/>
         </createTable>
     </changeSet>
 
@@ -125,7 +124,7 @@
         <addForeignKeyConstraint baseTableName="property_amenities" baseColumnNames="amenity_id"
                                  constraintName="link_amenity_fk"
                                  referencedTableName="amenity"
-                                 referencedColumnNames="id"/>
+                                 referencedColumnNames="name"/>
     </changeSet>
 
     <changeSet id="13" author="juli220620">
