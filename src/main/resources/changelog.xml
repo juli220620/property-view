@@ -12,7 +12,9 @@
             <column name="name" type="varchar">
                 <constraints nullable="false"/>
             </column>
-            <column name="brand" type="varchar"/>
+            <column name="brand" type="varchar">
+                <constraints nullable="false"/>
+            </column>
             <column name="description" type="varchar"/>
         </createTable>
     </changeSet>
@@ -32,11 +34,21 @@
             <column name="hotel_id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="house_number" type="bigint"/>
-            <column name="street" type="varchar"/>
-            <column name="city" type="varchar"/>
-            <column name="country" type="varchar"/>
-            <column name="post_code" type="varchar"/>
+            <column name="house_number" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="post_code" type="varchar">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
@@ -52,8 +64,12 @@
             <column name="hotel_id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="phone" type="varchar"/>
-            <column name="email" type="varchar"/>
+            <column name="phone" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
     
@@ -69,7 +85,9 @@
             <column name="hotel_id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="check_in" type="varchar" defaultValue="14:00"/>
+            <column name="check_in" type="varchar" defaultValue="14:00">
+                <constraints nullable="false"/>
+            </column>
             <column name="check_out" type="varchar" defaultValue="12:00"/>
         </createTable>
     </changeSet>
@@ -115,6 +133,7 @@
         <loadData tableName="address" file="data/addresses.csv"/>
         <loadData tableName="contact" file="data/contacts.csv"/>
         <loadData tableName="property_amenities" file="data/property_amenities.csv"/>
+        <loadData tableName="arrival_time" file="data/arrival.csv"/>
     </changeSet>
 
 </databaseChangeLog>

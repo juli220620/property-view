@@ -14,6 +14,6 @@ public class PropertyAddressDto {
     private Integer houseNumber;
     private String street;
     private String city;
-    private String state;
+    private String country;
     private String postCode;
 }

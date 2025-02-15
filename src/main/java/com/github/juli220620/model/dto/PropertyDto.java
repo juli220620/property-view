@@ -16,6 +16,7 @@ public class PropertyDto {
     private Long id;
     private String name;
     private String brand;
+    private String description;
 
     private PropertyAddressDto address;
     private PropertyContactDto contact;

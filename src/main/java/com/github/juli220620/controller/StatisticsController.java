@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/property-view")
-public class PropertyManagerController {
+@RequiredArgsConstructor
+public class StatisticsController {
 
     private final HistogramService histogramService;
 

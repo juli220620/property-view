@@ -4,20 +4,33 @@ import com.github.juli220620.dao.PropertyRepo;
 import com.github.juli220620.dao.impl.SearchParam;
 import com.github.juli220620.mapper.PropertyMapper;
 import com.github.juli220620.model.PropertyEntity;
+import com.github.juli220620.model.dto.PropertyDto;
 import com.github.juli220620.model.dto.PropertyMainInfoDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class PropertyService {
+public class PropertyDataService {
 
-    private final PropertyRepo propertyRepo;
     private final PropertyMapper propertyMapper;
+    private final PropertyRepo propertyRepo;
+
+
+    public List<PropertyMainInfoDto> findAll() {
+        return mapListToMainInfo(propertyRepo.findAll());
+    }
+
+    public PropertyDto findById(Long id) {
+        return propertyRepo.findById(id)
+                .map(propertyMapper::toDto)
+                .orElseThrow(() -> new NoSuchElementException("No such hotel"));
+    }
 
     public List<PropertyMainInfoDto> findAllByParams(List<String> name,
                                                      List<String> brand,
@@ -33,7 +46,7 @@ public class PropertyService {
         if (country != null && !country.isEmpty()) paramList.add(new SearchParam("country", country));
         if (amenities != null && !amenities.isEmpty()) paramList.add(new SearchParam("amenities", amenities));
 
-        if (paramList.isEmpty()) return mapListToMainInfo(propertyRepo.findAll());
+        if (paramList.isEmpty()) return findAll();
 
         var data = propertyRepo.findAllByParams(paramList);
         return mapListToMainInfo(data);
