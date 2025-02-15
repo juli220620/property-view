@@ -1,13 +1,15 @@
 package com.github.juli220620.service.histogram;
 
+import com.github.juli220620.service.PropertyParamKey;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
 import org.springframework.stereotype.Component;
 
+import static com.github.juli220620.service.PropertyParamKey.CITY;
+
 @Component
 public class CityHistogramDataProvider extends AbstractHistogramDataProvider {
-    public static final String KEY = "city";
 
     public CityHistogramDataProvider(EntityManagerFactory entityManagerFactory) {
         super(entityManagerFactory);
@@ -20,7 +22,7 @@ public class CityHistogramDataProvider extends AbstractHistogramDataProvider {
     }
 
     @Override
-    public String key() {
-        return KEY;
+    public PropertyParamKey key() {
+        return CITY;
     }
 }

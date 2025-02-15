@@ -16,7 +16,7 @@ public class HistogramService {
     public HistogramService(Set<HistogramDataProvider> dataProviders) {
         this.dataProviders = dataProviders.stream()
                 .collect(Collectors.toMap(
-                        HistogramDataProvider::key,
+                        histogramDataProvider -> histogramDataProvider.key().getValue(),
                         histogramDataProvider -> histogramDataProvider));
     }
 

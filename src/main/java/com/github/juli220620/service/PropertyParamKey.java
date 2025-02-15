@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public enum PropertySearchKey {
+public enum PropertyParamKey {
 
     BRAND(PropertyEntity.Fields.brand),
     CITY(PropertyAddressEntity.Fields.city),

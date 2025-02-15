@@ -1,7 +1,7 @@
 package com.github.juli220620.dao.impl.composite;
 
 import com.github.juli220620.model.PropertyEntity;
-import com.github.juli220620.service.PropertySearchKey;
+import com.github.juli220620.service.PropertyParamKey;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -15,7 +15,7 @@ public class NameParamProcessor extends AbstractPropertyParamProcessor {
     }
 
     @Override
-    public PropertySearchKey paramKey() {
-        return PropertySearchKey.NAME;
+    public PropertyParamKey paramKey() {
+        return PropertyParamKey.NAME;
     }
 }

@@ -3,7 +3,7 @@ package com.github.juli220620.dao.impl.composite;
 import com.github.juli220620.dao.impl.SearchParam;
 import com.github.juli220620.model.AmenityEntity;
 import com.github.juli220620.model.PropertyEntity;
-import com.github.juli220620.service.PropertySearchKey;
+import com.github.juli220620.service.PropertyParamKey;
 import jakarta.persistence.criteria.*;
 
 import java.util.List;
@@ -11,8 +11,8 @@ import java.util.List;
 public class AmenityParamProcessor extends ComposingPropertyParamProcessor {
 
     @Override
-    public PropertySearchKey paramKey() {
-        return PropertySearchKey.AMENITY;
+    public PropertyParamKey paramKey() {
+        return PropertyParamKey.AMENITY;
     }
 
     @Override
